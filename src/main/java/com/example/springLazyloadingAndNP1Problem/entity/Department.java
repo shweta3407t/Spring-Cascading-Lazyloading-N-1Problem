@@ -21,6 +21,7 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long dept_id;
 
+    @Column(unique = true)
     private  String name;
 
     @OneToMany(cascade = CascadeType.PERSIST , mappedBy = "department")

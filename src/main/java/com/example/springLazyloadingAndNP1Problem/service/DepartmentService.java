@@ -29,17 +29,38 @@ public class DepartmentService {
 //        departmentRepository.saveDepartment(department);
 //    }
 
+
+
     //save for one to many
     @Transactional
-    public  void  saveStudent (Department departmentRequest , String studentName ){
+    public  void  saveDepartment (Department departmentRequest , String studentName ){
 
        Student student=new Student();
+       student.setName(studentName );
+       student.setDepartment(departmentRequest);
 
-        student.setName(studentName );
 
-        departmentRequest.getStudentList().add(student);
+
+       Student student1=new Student();
+       student1.setName("ppppp");
+       student1.setDepartment(departmentRequest);
+
+        Student student2=new Student();
+        student2.setName("rrr");
+        student2.setDepartment(departmentRequest);
+
+
+
+       List<Student > studentList = departmentRequest.getStudentList();
+        studentList.add(student );
+        studentList.add(student1);
+        studentList.add(student2);
+
+
 
         departmentRepository.saveDepartment(departmentRequest );
+
+
     }
 
 

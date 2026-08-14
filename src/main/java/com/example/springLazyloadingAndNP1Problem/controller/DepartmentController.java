@@ -29,7 +29,7 @@ public class DepartmentController {
     //save
     @PostMapping
     public ResponseEntity<String> saveDepartment(@RequestBody Department department , @RequestParam String studentName){
-        departmentService.saveStudent(department ,   studentName);
+        departmentService.saveDepartment(department ,   studentName);
 
         return  ResponseEntity.ok("DONE");
     }
