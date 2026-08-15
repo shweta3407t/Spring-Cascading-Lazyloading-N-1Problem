@@ -50,11 +50,11 @@ public class DepartmentService {
         student2.setDepartment(departmentRequest);
 
 
-
-       List<Student > studentList = departmentRequest.getStudentList();
-        studentList.add(student );
-        studentList.add(student1);
-        studentList.add(student2);
+//
+//       List<Student > studentList = departmentRequest.getStudentList();
+//        studentList.add(student );
+//        studentList.add(student1);
+//        studentList.add(student2);
 
 
 

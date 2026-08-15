@@ -7,14 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Department {
     @Id
@@ -24,28 +22,14 @@ public class Department {
     @Column(unique = true)
     private  String name;
 
-    @OneToMany(cascade = CascadeType.PERSIST , mappedBy = "department")
-    private List<Student > studentList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.REMOVE , mappedBy = "department")
+    private List<Student > studentList;
 
 
-
-
-
-
-
-    public List<Student> getStudentList() {
-        return studentList;
-    }
-
-    public void setStudentList(List<Student> studentList) {
-        this.studentList = studentList;
-    }
-
-    public  Department(){}
-
-    public Department(Long dept_id, String name) {
+    public Department(Long dept_id, String name, List<Student> studentList) {
         this.dept_id = dept_id;
         this.name = name;
+        this.studentList = studentList;
     }
 
     public Long getDept_id() {
@@ -62,5 +46,13 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Student> getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(List<Student> studentList) {
+        this.studentList = studentList;
     }
 }
