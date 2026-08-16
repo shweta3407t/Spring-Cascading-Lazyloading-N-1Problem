@@ -20,14 +20,32 @@ public class DepartmentService {
     private  StudentRepository studentRepository;
 
 
+
     @Transactional
     public  void  saveDepartment(Department department){
+        departmentRepository.saveDepartment(department);
+    }
+
+
+    @Transactional
+    public  void  saveDepartmentWithStudent(Department department , String studentName){
+
+        Student student=new Student();
+        student.setName(studentName);
+        student.setDepartment(department);
+
+
         Student student1=new Student();
-        student1.setName("shweta");
+        student1.setName("ssssss");
         student1.setDepartment(department);
 
 
-        department.getStudentList().add(student1);
+        Student student2=new Student();
+        student2.setName("ddddddd");
+        student2.setDepartment(department);
+
+
+        department.getStudentList().addAll(List.of(student , student1 , student2));
 
 
         departmentRepository.saveDepartment(department);

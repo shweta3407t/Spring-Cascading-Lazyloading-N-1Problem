@@ -18,9 +18,18 @@ public class DepartmentController {
     private DepartmentService departmentService;
 
 
+
     @PostMapping
-    public  ResponseEntity<String> saveDepartment(@RequestBody Department department){
+    public  ResponseEntity<String> saveDepart (@RequestBody Department department){
         departmentService.saveDepartment(department);
+
+        return  ResponseEntity.ok("DONE");
+    }
+
+
+    @PostMapping("/{studentName}")
+    public  ResponseEntity<String> saveDepartmentWithStudent(@RequestBody Department department , @PathVariable String studentName){
+        departmentService.saveDepartmentWithStudent(department , studentName);
 
         return  ResponseEntity.ok("DONE");
     }
