@@ -7,38 +7,36 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long dept_id;
 
-    @Column(unique = true)
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    private  Long id;
+
     private  String name;
 
-    @OneToMany(cascade = CascadeType.REMOVE , mappedBy = "department")
-    private List<Student > studentList;
+
+    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
+    private  List<Student> studentList = new ArrayList<>();
 
 
-    public Department(Long dept_id, String name, List<Student> studentList) {
-        this.dept_id = dept_id;
+
+
+    public  Department(){}
+    public Department(  String name, List<Student> studentList) {
+
         this.name = name;
-        this.studentList = studentList;
+        this.studentList = studentList  != null ? studentList : new ArrayList<>();
     }
 
-    public Long getDept_id() {
-        return dept_id;
-    }
-
-    public void setDept_id(Long dept_id) {
-        this.dept_id = dept_id;
-    }
 
     public String getName() {
         return name;

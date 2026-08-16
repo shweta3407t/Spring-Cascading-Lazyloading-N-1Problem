@@ -26,6 +26,9 @@ public class DepartmentRepository {
         entityManager.persist(department);
     }
 
+
+
+
     //get
     public  Department  getDepartmentById(Long id){
         return  entityManager.find(Department.class , id);

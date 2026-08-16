@@ -6,39 +6,34 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Entity
 public class Student {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
-    @Column(name = "name")
     private  String name;
 
-    @ManyToOne
-    @JoinColumn(name = "dept_id" , nullable = false)
+
+    @ManyToOne( )
+    @JoinColumn(name = "dept_id")
     private  Department department;
 
 
     public  Student(){}
 
-    public Student(Long id, String name, Department department) {
-        this.id = id;
+    public Student( String name, Department department) {
+
         this.name = name;
         this.department = department;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

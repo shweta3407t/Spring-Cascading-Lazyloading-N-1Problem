@@ -13,56 +13,55 @@ import java.util.List;
 @RequestMapping("/api/student")
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+    private  StudentService studentService;
 
-//    //save
-//    @PostMapping
-//    public ResponseEntity<String> saveStudent(@RequestBody Student student ){
-//        studentService.saveStudent(student);
+
+    @PostMapping
+    public  ResponseEntity<String> saveStudent(@RequestBody Student student){
+        studentService.saveStudent(student);
+
+
+        return ResponseEntity.ok("DONE");
+    }
+
+
+
+
+
+
+
+
+
+//    //get
+//    @GetMapping("/{id}")
+//    public  ResponseEntity<Student> getStudentById(@PathVariable Long id){
+//
+//         Student student=  studentService.getStudentById(id);
+//
+//         return  ResponseEntity.ok(student);
+//    }
+//
+//    @GetMapping
+//    public  ResponseEntity<List<Student>> getStudentById( ){
+//
+//        List<Student> student=  studentService.getAllStudent();
+//
+//        return  ResponseEntity.ok(student);
+//    }
+//
+//    //update
+//    @PutMapping("/{id}")
+//    public  ResponseEntity<String> updateStudent(@RequestBody Student student , @PathVariable Long id){
+//
+//        studentService.updateStudent(student, id) ;
 //
 //        return  ResponseEntity.ok("DONE");
 //    }
 
 
-    //save many to many
-    @PostMapping
-    public ResponseEntity<String> saveStudent(@RequestBody Student student  , @PathVariable Long dept_id){
-        studentService.saveStudent(student , dept_id);
-
-        return  ResponseEntity.ok("DONE");
-    }
-
-    //get
-    @GetMapping("/{id}")
-    public  ResponseEntity<Student> getStudentById(@PathVariable Long id){
-
-         Student student=  studentService.getStudentById(id);
-
-         return  ResponseEntity.ok(student);
-    }
-
-    @GetMapping
-    public  ResponseEntity<List<Student>> getStudentById( ){
-
-        List<Student> student=  studentService.getAllStudent();
-
-        return  ResponseEntity.ok(student);
-    }
-
-    //update
-    @PutMapping("/{id}")
-    public  ResponseEntity<String> updateStudent(@RequestBody Student student , @PathVariable Long id){
-
-        studentService.updateStudent(student, id) ;
-
-        return  ResponseEntity.ok("DONE");
-    }
-
-
 
 //delete
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public  ResponseEntity<String> deleteStudent(@PathVariable Long id ){
 
           studentService.deleteStudent(id);

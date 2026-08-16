@@ -13,85 +13,65 @@ import java.util.List;
 
 @Service
 public class DepartmentService {
-
     @Autowired
-    private DepartmentRepository departmentRepository;
+   private  DepartmentRepository departmentRepository;
 
     @Autowired
     private  StudentRepository studentRepository;
 
 
-
-
-//    //save
-//    @Transactional
-//    public  void  saveStudent (Department department ){
-//        departmentRepository.saveDepartment(department);
-//    }
-
-
-
-    //save for one to many
     @Transactional
-    public  void  saveDepartment (Department departmentRequest , String studentName ){
-
-       Student student=new Student();
-       student.setName(studentName );
-       student.setDepartment(departmentRequest);
-
+    public  void  saveDepartment(Department department){
+        Student student1=new Student();
+        student1.setName("shweta");
+        student1.setDepartment(department);
 
 
-       Student student1=new Student();
-       student1.setName("ppppp");
-       student1.setDepartment(departmentRequest);
-
-        Student student2=new Student();
-        student2.setName("rrr");
-        student2.setDepartment(departmentRequest);
+        department.getStudentList().add(student1);
 
 
-//
-//       List<Student > studentList = departmentRequest.getStudentList();
-//        studentList.add(student );
-//        studentList.add(student1);
-//        studentList.add(student2);
-
-
-
-        departmentRepository.saveDepartment(departmentRequest );
-
-
+        departmentRepository.saveDepartment(department);
+//        studentRepository.saveStudent(student1);
     }
 
-
-    //get
     @Transactional
-    public   Department   getDepartmentById(Long id){
-        return departmentRepository.getDepartmentById(id);
+    public  Department getDepartmentById(Long id){
+        return  departmentRepository.getDepartmentById(id);
     }
 
 
     @Transactional
-    public List<Department> getAllDepartment(){
-        return  departmentRepository.getAllDepartment();
+    public  List<Department> getAllDepartment(){
+        return departmentRepository.getAllDepartment();
     }
 
 
-    //update
     @Transactional
-    public  void  updateDepartment(Department departmentRequest , Long id){
-        Department department=getDepartmentById(id);
+    public  void  updateDepartment(Department departmentRequest ,Long id){
+        departmentRepository.getDepartmentById(id);
+
+        Department department= getDepartmentById(id);
 
         department.setName(departmentRequest.getName());
+        department.setStudentList(departmentRequest.getStudentList());
+
 
 
     }
 
-    //delete
+
     @Transactional
-    public  void   deleteDepartment(Long id){
-        Department  department =departmentRepository.getDepartmentById(id);
+    public  void  deleteDepartment(Long id){
+        Department department=departmentRepository.getDepartmentById(id);
 
         departmentRepository.deleteDepartment(department);
     }
+
+
+
+
+
+
+
+
 }

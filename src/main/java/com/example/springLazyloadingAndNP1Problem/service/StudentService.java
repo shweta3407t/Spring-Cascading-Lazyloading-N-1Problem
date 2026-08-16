@@ -15,58 +15,51 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
-    private StudentRepository studentRepository;
+     private  StudentRepository studentRepository;
+
 
     @Autowired
-    private DepartmentRepository departmentRepository;
+    private  DepartmentRepository departmentRepository;
 
-//    //save
-//    @Transactional
-//    public  void  saveStudent(Student student){
-//     studentRepository.saveStudent(student);
-//    }
 
-    //save many to one
     @Transactional
-    public  void  saveStudent(Student studentRequest , Long dept_id){
+    public  void  saveStudent(Student student ){
 
-        Department department=departmentRepository.getDepartmentById(dept_id);
-
-        studentRequest.setDepartment(department);
-
-        studentRepository.saveStudent(studentRequest);
+        studentRepository.saveStudent(student);
     }
 
 
-    //get
+
     @Transactional
-    public   Student   getStudentById(Long id){
-        return studentRepository.getStudentById(id);
+    public  void  deleteStudent(Long id){
+        Student student=studentRepository.getStudentById(id);
+
+        studentRepository.deleteStudent(student);
+    }
+
+
+
+    @Transactional
+    public  Student getStudentById(Long id){
+        return  studentRepository.getStudentById(id);
     }
 
 
     @Transactional
-    public List<Student> getAllStudent(){
+    public  List<Student> studentList(){
         return  studentRepository.getAllStudent();
     }
 
 
-    //update
     @Transactional
-    public  void  updateStudent(Student studentRequest , Long id){
-        Student student=getStudentById(id);
-
-        student.setName(studentRequest.getName());
-
-    }
-
-    //delete
-    @Transactional
-    public  void   deleteStudent(Long id){
+    public void  updateStudent(Student studentRequest , Long id){
         Student student =studentRepository.getStudentById(id);
 
-        studentRepository.deleteStudent(student);
+         student.setName(studentRequest.getName());
+         student.setDepartment(studentRequest.getDepartment());
+
     }
+
 
 
 }

@@ -17,22 +17,17 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-//    //save
-//    @PostMapping
-//    public ResponseEntity<String> saveDepartment(@RequestBody Department department){
-//        departmentService.saveStudent(department);
-//
-//        return  ResponseEntity.ok("DONE");
-//    }
 
-
-    //save
     @PostMapping
-    public ResponseEntity<String> saveDepartment(@RequestBody Department department , @RequestParam String studentName){
-        departmentService.saveDepartment(department ,   studentName);
+    public  ResponseEntity<String> saveDepartment(@RequestBody Department department){
+        departmentService.saveDepartment(department);
 
         return  ResponseEntity.ok("DONE");
     }
+
+
+
+
 
     //get
     @GetMapping("/{id}")
@@ -63,7 +58,7 @@ public class DepartmentController {
 
 
     //delete
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public  ResponseEntity<String> deleteStudent(@PathVariable Long id ){
 
         departmentService.deleteDepartment(id);
